@@ -14,9 +14,8 @@ import { UserModule } from './user/user.module';
     username: 'root',
     password: 'password',
     database: 'konseling_satir',
-    entities: ['dist/**/**/*.entity.ts'],
+    entities: ['dist/**/**/*.entity{.js}'],
     synchronize: true,
-    
   }), UserModule,],
   controllers: [AppController],
   providers: [AppService],

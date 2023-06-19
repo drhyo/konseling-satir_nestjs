@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import { genSalt, hash } from "bcrypt";
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 Entity({
     name: 'user'
@@ -6,8 +7,8 @@ Entity({
 
 
  export class User  {
-    @PrimaryColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
     
     @Column()
     name: string;
@@ -24,6 +25,19 @@ Entity({
     @Column()
     phone_number: string;
 
-    @Column()
-    create_at: string;
+    @Column({type: "bigint"})
+    create_at: number;
+
+    @BeforeInsert()
+    async hashPassword() {
+        const salt = 15
+        const generatedSalt = await genSalt(salt)
+        this.password = await hash(this.password, generatedSalt)
+    }
+
+    @BeforeInsert()
+    insertedDate() {
+        this.create_at = Date.now()
+    }
+
  }
