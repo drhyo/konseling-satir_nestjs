@@ -3,6 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { UserEntity } from './entity/user.entity';
+import { AdminModule } from './admin/admin.module';
+import { AdminEntity } from './entity/admin.entity';
 
 
 
@@ -14,9 +17,9 @@ import { UserModule } from './user/user.module';
     username: 'root',
     password: 'password',
     database: 'konseling_satir',
-    entities: ['dist/**/**/*.entity{.js}'],
+    entities: [UserEntity, AdminEntity ],
     synchronize: true,
-  }), UserModule,],
+  }), UserModule, AdminModule,],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserDto } from 'src/dto/user.dto';
-import { User } from 'src/entity/user.entity';
+import { UserEntity } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt'
 import { JwtService } from '@nestjs/jwt';
@@ -10,14 +10,14 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class UserService {
     constructor(
-        @InjectRepository(User)
-        private userRepository: Repository<User>,
+        @InjectRepository(UserEntity)
+        private userRepository: Repository<UserEntity>,
         private jwt: JwtService
     ) {}
 
         async createUser(payload: UserDto): Promise<boolean> {  
             try{
-                const data: User = new User
+                const data: UserEntity = new UserEntity
                 data.name = payload.name
                 data.email = payload.email
                 data.password = payload.password
@@ -34,10 +34,9 @@ export class UserService {
         }
 
 
-
-        async loginUser(payload:UserDto): Promise<any> {
+        async loginUser(payload: UserDto): Promise<any> {
             try{
-                const user: User = await this.userRepository.findOneBy({
+                const user: UserEntity = await this.userRepository.findOneBy({
                     email: payload.email
                 })
                 if (!user) {

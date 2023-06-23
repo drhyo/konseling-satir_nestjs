@@ -16,8 +16,7 @@ export class UserController {
             return response.responseSucces()
         } 
         catch(e) {
-            console.log(e);
-            
+            console.log(e);           
             return res.status(500).json({
                 status: false,
                 message: "failed "
