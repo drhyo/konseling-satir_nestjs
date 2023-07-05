@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserDto } from 'src/dto/user.dto';
-import { UserEntity } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt'
 import { JwtService } from '@nestjs/jwt';
+import { UserEntity } from './entity/user.entity';
+
 
 
 @Injectable()
@@ -14,16 +15,13 @@ export class UserService {
         private userRepository: Repository<UserEntity>,
         private jwt: JwtService
     ) {}
-
+        // create user
         async createUser(payload: UserDto): Promise<boolean> {  
             try{
                 const data: UserEntity = new UserEntity
-                data.name = payload.name
                 data.email = payload.email
                 data.password = payload.password
-                data.sex = payload.sex
-                data.phone_number = payload.phone_number
-    
+
                 await this.userRepository.save(data)
                 return true                      
             }catch (e) {
@@ -33,7 +31,7 @@ export class UserService {
             }
         }
 
-
+        // login user 
         async loginUser(payload: UserDto): Promise<any> {
             try{
                 const user: UserEntity = await this.userRepository.findOneBy({
@@ -49,8 +47,6 @@ export class UserService {
                 const payloadJwt = {
                     sub: user.id,
                     email: user.email,
-                    name: user.name,
-                    phone_number: user.phone_number
                 }
                 return{
                     token: await this.jwt.signAsync(payloadJwt)
@@ -61,4 +57,17 @@ export class UserService {
                 
             }
         }
+
+        // find all user
+        async getUser (): Promise<UserEntity[]> {
+            return await this.userRepository.find()
+        }
+
+
+        // find user by id 
+        // async getUserById(id: string): Promise<UserEntity> {
+        //     return await this.userRepository.findOne(id)
+        // }
 }
+
+

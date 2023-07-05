@@ -3,9 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
-import { UserEntity } from './entity/user.entity';
-import { AdminModule } from './admin/admin.module';
-import { AdminEntity } from './entity/admin.entity';
+import { ProductModule } from './product/product.module';
+import { UserEntity } from './user/entity/user.entity';
+import { ProductEntity } from './product/entity/product.entity';
+import { BlogModule } from './blog/blog.module';
+import { BlogEntity } from './blog/entity/blog.entity';
 
 
 
@@ -17,9 +19,9 @@ import { AdminEntity } from './entity/admin.entity';
     username: 'root',
     password: 'password',
     database: 'konseling_satir',
-    entities: [UserEntity, AdminEntity ],
-    synchronize: true,
-  }), UserModule, AdminModule,],
+    entities: [UserEntity, ProductEntity, BlogEntity],
+    synchronize: false,
+  }), UserModule, ProductModule, BlogModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -30,4 +30,12 @@ export class BaseResponseApi<T> {
             data: null
         })
     }
+
+    responDataNotFound (): Response<BaseResponseApi<T>>{
+        return this.response.status(404).json({
+            success: this.success,
+            message: this.message,
+            data: null
+        })
+    }
 }

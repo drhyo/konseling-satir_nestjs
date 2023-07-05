@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from 'src/dto/user.dto';
 import { Response } from 'express';
@@ -15,12 +15,10 @@ export class UserController {
             const response: BaseResponseApi<boolean> = new BaseResponseApi(true, "success", result, res )
             return response.responseSucces()
         } 
-        catch(e) {
-            console.log(e);           
-            return res.status(500).json({
-                status: false,
-                message: "failed "
-            })
+        catch(error) {
+            console.log(error);           
+            const response: BaseResponseApi<boolean> = new BaseResponseApi(true, "failed", error, res )
+            return response.responseInternalError()
         }
     }
 
@@ -31,13 +29,31 @@ export class UserController {
             const result = await this.userService.loginUser(payload)
             const response = new BaseResponseApi<any>(true, "success", result, res)
             return response.responseSucces()
-        } catch (e) {
-            return res.status(500).json({
-                status: false,
-                message: "failed"
-            })            
+        } catch (error) {
+            console.log(error);        
+            const response: BaseResponseApi<boolean> = new BaseResponseApi(true, "failed", error, res )
+            return response.responseInternalError()
         }   
     }
 
+    @Get()
+    async getUser(@Res() res: Response): Promise<any> {
+        try {
+            const dataUser = await this.userService.getUser()
+            const response = new BaseResponseApi<any>(true,'success', dataUser,res)
+            return response.responseSucces()
+            
+        } catch (error) {
+            console.log(error);
+            const response = new BaseResponseApi<any>(false,'Not Found', error,res)
+            return response.responDataNotFound
+            
+        }
+    }
     
+
+    // @Get(':id')
+    // async getUserById(@Param('id') id: string ) {
+    //     return await this.userService.getUserById(id)
+    // }
 }
