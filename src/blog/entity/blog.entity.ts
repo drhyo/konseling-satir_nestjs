@@ -1,23 +1,26 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'blogs'})
-export class BlogEntity{
-    @PrimaryGeneratedColumn()
+export class BlogEntity {
+    @PrimaryGeneratedColumn({name: 'id'})
     id: number;
 
-    @Column()
+    @Column({name: 'title'})
     title: string;
 
-    @Column()
+    @Column({name: 'desc'})
+    desc: string;
+
+    @Column({name: 'body'})
     body: string;
 
-    @Column() 
+    @Column({name: 'created_at'})
     created_at: Date;
 
-    @Column() 
+    @Column({name: 'updated_at'})
     updated_at: Date;
 
-    @Column()
+    @Column({name: 'published_at'})
     published_at: Date;
 
 }

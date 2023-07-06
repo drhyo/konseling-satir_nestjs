@@ -1,23 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductEntity } from './entity/product.entity';
+import { FounderCardEntity } from './entity/founder-card.entity';
 import { Repository } from 'typeorm';
 import axios from 'axios';
 
 @Injectable()
-export class ProductService {
+export class FounderCardService {
     constructor(
-        @InjectRepository(ProductEntity) 
-        private productRepository: Repository<ProductEntity>
-        ) { }
+        @InjectRepository(FounderCardEntity)
+        private founderCardRepository: Repository<FounderCardEntity>
+        ){ }
 
-        async findAllProducts (): Promise<ProductEntity[]> {
-            return await this.productRepository.find()
+        async findAllFounderCard (): Promise<FounderCardEntity[]> {
+            return this.founderCardRepository.find()
         }
+
 
         async getImage (): Promise<any> {
             try {
-                const res = await axios.get('http://localhost:1337/api/product-cards?populate=*')
+                const res = await axios.get('http://localhost:1337/api/founder-cards?populate=*')
                 const findImage = res.data.data.map((image: any) => {
                     const imageUrl = image.attributes.image.data.attributes.url
                     return{
@@ -31,16 +32,16 @@ export class ProductService {
                 throw new NotFoundException('failed')
             }
         }
-
-        async findAllProductsWithImage (): Promise<ProductEntity[]> {
-            const findAllProducts = await this.findAllProducts()
+    
+        async findAllFounderCardWithImage (): Promise<FounderCardEntity[]> {
+            const findAllFounderCard = await this.findAllFounderCard()
             const getImage = await this.getImage()
-
-            const merge = findAllProducts.map((item) => {
+    
+            const merge = findAllFounderCard.map((item) => {
                 const image = getImage.find((img: any ) => img.id == item.id)
                 return{
                     ...item,
-                    image_product: image ? `http://localhost:1337${ image.url }`: '' 
+                    image_founder: image ? `http://localhost:1337${ image.url }`: '' 
                 }
             })
             return merge

@@ -1,23 +1,23 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BlogEntity } from './entity/blog.entity';
+import { PersonalCardEntity } from './entity/personal-card.entity';
 import { Repository } from 'typeorm';
 import axios from 'axios';
 
 @Injectable()
-export class BlogService {
+export class PersonalCardService {
     constructor(
-        @InjectRepository(BlogEntity)
-        private blogRepository: Repository<BlogEntity>
+        @InjectRepository(PersonalCardEntity)
+        private personalCardRepository: Repository<PersonalCardEntity>
     ){ }
 
-    async findAllBlog (): Promise<BlogEntity[]> {
-        return await this.blogRepository.find()
+    async findAllPersonalCard(): Promise<PersonalCardEntity[]> {
+        return await this.personalCardRepository.find()
     }
-    
+
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://localhost:1337/api/founder-cards?populate=*')
+            const res = await axios.get('http://localhost:1337/api/personal-cards?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{
@@ -32,15 +32,15 @@ export class BlogService {
         }
     }
 
-    async findAllBlogWithImage (): Promise<BlogEntity[]> {
-        const findAllFounderCard = await this.findAllBlog()
+    async findAllPersonalCardWithImage (): Promise<PersonalCardEntity[]> {
+        const findAllPersonalCard = await this.findAllPersonalCard()
         const getImage = await this.getImage()
 
-        const merge = findAllFounderCard.map((item) => {
+        const merge = findAllPersonalCard.map((item) => {
             const image = getImage.find((img: any ) => img.id == item.id)
             return{
                 ...item,
-                image_blog: image ? `http://localhost:1337${ image.url }`: '' 
+                image_personal: image ? `http://localhost:1337${ image.url }`: '' 
             }
         })
         return merge
