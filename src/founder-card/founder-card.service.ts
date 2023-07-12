@@ -12,7 +12,7 @@ export class FounderCardService {
         ){ }
 
         async findAllFounderCard (): Promise<FounderCardEntity[]> {
-            return this.founderCardRepository.find()
+            return await this.founderCardRepository.find()
         }
 
 

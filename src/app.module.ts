@@ -11,6 +11,9 @@ import { SliderSectionInfoModule } from './slider-section-info/slider-section-in
 import { FounderCardModule } from './founder-card/founder-card.module';
 import { PersonalCardModule } from './personal-card/personal-card.module';
 import { BlogModule } from './blog/blog.module';
+import { PelatihanCardModule } from './pelatihan-card/pelatihan-card.module';
+import { KonsultasiCardModule } from './konsultasi-card/konsultasi-card.module';
+import { LayananKonselingCardModule } from './layanan-konseling-card/layanan-konseling-card.module';
 
 //import entity
 import { UserEntity } from './user/entity/user.entity';
@@ -20,6 +23,9 @@ import { SliderSectionInfoEntity } from './slider-section-info/entity/slider-sec
 import { FounderCardEntity } from './founder-card/entity/founder-card.entity';
 import { PersonalCardEntity } from './personal-card/entity/personal-card.entity';
 import { BlogEntity } from './blog/entity/blog.entity';
+import { PelatihanCardEntity } from './pelatihan-card/entity/pelatihan-card.entity';
+import { KonsultasiCardEntity } from './konsultasi-card/entity/konsultasi-card.entity';
+import { LayananKonselingCardEntity } from './layanan-konseling-card/entity/layanan-konseling-card.entity';
 
 
 
@@ -38,7 +44,10 @@ import { BlogEntity } from './blog/entity/blog.entity';
       SliderSectionInfoEntity,
       FounderCardEntity,
       PersonalCardEntity,
-      BlogEntity
+      BlogEntity,
+      PelatihanCardEntity,
+      KonsultasiCardEntity,
+      LayananKonselingCardEntity
     ],
     synchronize: false,
   }), UserModule, 
@@ -47,11 +56,13 @@ import { BlogEntity } from './blog/entity/blog.entity';
       SliderSectionInfoModule, 
       FounderCardModule, 
       PersonalCardModule, 
-      BlogModule   
+      BlogModule, 
+      PelatihanCardModule,
+      KonsultasiCardModule,
+      LayananKonselingCardModule   
       ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
 
-}
+export class AppModule {}

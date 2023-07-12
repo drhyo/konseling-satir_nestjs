@@ -1,24 +1,15 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: 'product_cards'})
-export class ProductEntity {
+@Entity({name: 'konsultasi_cards'})
+export class KonsultasiCardEntity {
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column()
-    title: string;
 
     @Column()
     price: string;
 
     @Column()
-    day: string;
-
-    @Column()
-    minute: string;
-
-    @Column()
-    second: string;
+    title: string;
 
     @Column()
     body: string;
@@ -27,13 +18,12 @@ export class ProductEntity {
     slug: string;
 
     @Column()
-    created_at: Date;
+    created_at: string;
 
     @Column()
-    updated_at: Date;
+    updated_at: string;
 
     @Column()
-    published_at: Date;
+    published_at: string;
 
-    
 }

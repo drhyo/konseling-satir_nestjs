@@ -1,23 +1,25 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: 'personal_cards'})
-export class PersonalCardEntity {
+@Entity({name: 'card_pelatihans'})
+export class PelatihanCardEntity{
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column()
-    name: string;
 
     @Column()
     title: string;
 
     @Column()
+    price: string;
+
+    @Column()
     body: string;
 
     @Column()
-    medsos_1: string;
+    created_at: string;
 
     @Column()
-    medsos_2: string;
+    updated_at: string;
 
+    @Column()
+    published_at: string;
 }

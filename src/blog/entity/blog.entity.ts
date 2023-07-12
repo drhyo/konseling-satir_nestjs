@@ -14,6 +14,9 @@ export class BlogEntity {
     @Column({name: 'body'})
     body: string;
 
+    @Column()
+    slug: string;
+
     @Column({name: 'created_at'})
     created_at: Date;
 

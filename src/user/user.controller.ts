@@ -17,7 +17,7 @@ export class UserController {
         } 
         catch(error) {
             console.log(error);           
-            const response: BaseResponseApi<boolean> = new BaseResponseApi(true, "failed", error, res )
+            const response: BaseResponseApi<boolean> = new BaseResponseApi(false, "failed", error, res )
             return response.responseInternalError()
         }
     }
@@ -31,7 +31,7 @@ export class UserController {
             return response.responseSucces()
         } catch (error) {
             console.log(error);        
-            const response: BaseResponseApi<boolean> = new BaseResponseApi(true, "failed", error, res )
+            const response: BaseResponseApi<boolean> = new BaseResponseApi(false, "failed", error, res )
             return response.responseInternalError()
         }   
     }
