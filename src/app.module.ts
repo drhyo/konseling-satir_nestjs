@@ -14,18 +14,9 @@ import { BlogModule } from './blog/blog.module';
 import { PelatihanCardModule } from './pelatihan-card/pelatihan-card.module';
 import { KonsultasiCardModule } from './konsultasi-card/konsultasi-card.module';
 import { LayananKonselingCardModule } from './layanan-konseling-card/layanan-konseling-card.module';
-
-//import entity
-import { UserEntity } from './user/entity/user.entity';
-import { ProductEntity } from './product/entity/product.entity';
-import { ArticelCardEntity } from './articel-card/entity/articel-card.entity';
-import { SliderSectionInfoEntity } from './slider-section-info/entity/slider-section-info.entity';
-import { FounderCardEntity } from './founder-card/entity/founder-card.entity';
-import { PersonalCardEntity } from './personal-card/entity/personal-card.entity';
-import { BlogEntity } from './blog/entity/blog.entity';
-import { PelatihanCardEntity } from './pelatihan-card/entity/pelatihan-card.entity';
-import { KonsultasiCardEntity } from './konsultasi-card/entity/konsultasi-card.entity';
-import { LayananKonselingCardEntity } from './layanan-konseling-card/entity/layanan-konseling-card.entity';
+import { BannerPageModule } from './banner-page/banner-page.module';
+import { GalleryHomeModule } from './gallery-home/gallery-home.module';
+import { GalleryTentangModule } from './gallery-tentang/gallery-tentang.module';
 
 
 
@@ -37,18 +28,7 @@ import { LayananKonselingCardEntity } from './layanan-konseling-card/entity/laya
     username: 'root',
     password: 'password',
     database: 'konseling_satir',
-    entities: [
-      UserEntity, 
-      ProductEntity, 
-      ArticelCardEntity, 
-      SliderSectionInfoEntity,
-      FounderCardEntity,
-      PersonalCardEntity,
-      BlogEntity,
-      PelatihanCardEntity,
-      KonsultasiCardEntity,
-      LayananKonselingCardEntity
-    ],
+    autoLoadEntities: true,
     synchronize: false,
   }), UserModule, 
       ProductModule, 
@@ -59,7 +39,10 @@ import { LayananKonselingCardEntity } from './layanan-konseling-card/entity/laya
       BlogModule, 
       PelatihanCardModule,
       KonsultasiCardModule,
-      LayananKonselingCardModule   
+      LayananKonselingCardModule,
+      BannerPageModule,
+      GalleryHomeModule,
+      GalleryTentangModule,
       ],
   controllers: [AppController],
   providers: [AppService],

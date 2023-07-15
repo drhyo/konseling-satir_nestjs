@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'card_pelatihans'})
 export class PelatihanCardEntity{
@@ -22,4 +22,5 @@ export class PelatihanCardEntity{
 
     @Column()
     published_at: string;
+
 }

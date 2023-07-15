@@ -1,32 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { GalleryHomeEntity } from './entity/gallery-home.entity';
 import { Repository } from 'typeorm';
-import { PelatihanCardEntity } from './entity/pelatihan-card.entity';
 import axios from 'axios';
 
 @Injectable()
-export class PelatihanCardService {
+export class GalleryHomeService {
     constructor(
-        @InjectRepository(PelatihanCardEntity)
-        private pelatihanCardRepository: Repository<PelatihanCardEntity>
-    ){ }
+        @InjectRepository(GalleryHomeEntity)
+        private galleryHomeRepository: Repository<GalleryHomeEntity>
+    )
+    { }
 
-    async findAllPelatihanCard(): Promise<PelatihanCardEntity[]> {
-        return await this.pelatihanCardRepository.find( )
-
+    async findAllGallery(): Promise<GalleryHomeEntity[]> {
+        return await this.galleryHomeRepository.find()
     }
-
-
-    async findDataById({id: id}) {
-        return await this.pelatihanCardRepository.findOne({
-            where: {id}
-        })
-    }
-
 
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://localhost:1337/api/founder-cards?populate=*')
+            const res = await axios.get('http://localhost:1337/api/gallery-banner-homepages?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{
@@ -41,21 +33,17 @@ export class PelatihanCardService {
         }
     }
 
-    async findAllPelatihanCardWithImage (): Promise<PelatihanCardEntity[]> {
-        const findAllPelatihanCard = await this.findAllPelatihanCard()
+    async findAllGalleryWithImage (): Promise<GalleryHomeEntity[]> {
+        const findAllGallery = await this.findAllGallery()
         const getImage = await this.getImage()
 
-        const merge = findAllPelatihanCard.map((item) => {
+        const merge = findAllGallery.map((item) => {
             const image = getImage.find((img: any ) => img.id == item.id)
             return{
                 ...item,
-                image_pelatihan: image ? `http://localhost:1337${ image.url }`: '' 
+                image: image ? `http://localhost:1337${ image.url }`: '' 
             }
         })
         return merge
     }
-    
-
-    
-
 }
