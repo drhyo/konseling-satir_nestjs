@@ -5,25 +5,25 @@ export class BlogEntity {
     @PrimaryGeneratedColumn({name: 'id'})
     id: number;
 
-    @Column({name: 'title'})
+    @Column()
     title: string;
 
-    @Column({name: 'desc'})
-    desc: string;
-
-    @Column({name: 'body'})
+    @Column()
     body: string;
 
     @Column()
     slug: string;
 
-    @Column({name: 'created_at'})
+    @Column()
+    eyes: number;
+    
+    @Column()
     created_at: Date;
 
-    @Column({name: 'updated_at'})
+    @Column()
     updated_at: Date;
 
-    @Column({name: 'published_at'})
+    @Column()
     published_at: Date;
 
 }

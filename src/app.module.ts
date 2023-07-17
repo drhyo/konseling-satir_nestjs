@@ -17,6 +17,7 @@ import { LayananKonselingCardModule } from './layanan-konseling-card/layanan-kon
 import { BannerPageModule } from './banner-page/banner-page.module';
 import { GalleryHomeModule } from './gallery-home/gallery-home.module';
 import { GalleryTentangModule } from './gallery-tentang/gallery-tentang.module';
+import { QuestionModule } from './question/question.module';
 
 
 
@@ -43,6 +44,7 @@ import { GalleryTentangModule } from './gallery-tentang/gallery-tentang.module';
       BannerPageModule,
       GalleryHomeModule,
       GalleryTentangModule,
+      QuestionModule,
       ],
   controllers: [AppController],
   providers: [AppService],

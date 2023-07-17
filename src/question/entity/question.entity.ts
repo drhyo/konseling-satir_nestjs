@@ -1,17 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: 'banner_pages'})
-export class BannerPageEntity {
+@Entity({name: 'questions'})
+export class QuestionEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    desc: string;
-    
-    @Column()
     title: string;
 
     @Column()
-    body: string;
-
+    desc: string;
 }

@@ -24,9 +24,10 @@ export class PelatihanCardService {
     }
 
 
+    
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://localhost:1337/api/founder-cards?populate=*')
+            const res = await axios.get('http://localhost:1337/api/card-pelatihans?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{
@@ -41,15 +42,18 @@ export class PelatihanCardService {
         }
     }
 
+   
+
     async findAllPelatihanCardWithImage (): Promise<PelatihanCardEntity[]> {
         const findAllPelatihanCard = await this.findAllPelatihanCard()
         const getImage = await this.getImage()
 
         const merge = findAllPelatihanCard.map((item) => {
             const image = getImage.find((img: any ) => img.id == item.id)
+    
             return{
                 ...item,
-                image_pelatihan: image ? `http://localhost:1337${ image.url }`: '' 
+                image: image ? `http://localhost:1337${ image.url }`: '' 
             }
         })
         return merge

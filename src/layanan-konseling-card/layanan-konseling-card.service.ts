@@ -19,11 +19,13 @@ export class LayananKonselingCardService {
     async getImage (): Promise<any> {
         try {
             const res = await axios.get('http://localhost:1337/api/founder-cards?populate=*')
-            const findImage = res.data.data.map((image: any) => {
-                const imageUrl = image.attributes.image.data.attributes.url
+            const findImage = res.data.data.map((data: any) => {
+                const imageUrl = data.attributes.image.data.attributes.url
                 return{
-                    id: image.id,
-                    url: imageUrl
+                    id: data.id,
+                    url: imageUrl,
+                    
+
                 }
             })
             return findImage
@@ -41,7 +43,7 @@ export class LayananKonselingCardService {
             const image = getImage.find((img: any ) => img.id == item.id)
             return{
                 ...item,
-                image_founder: image ? `http://localhost:1337${ image.url }`: '' 
+                image: image ? `http://localhost:1337${ image.url }`: '' 
             }
         })
         return merge
