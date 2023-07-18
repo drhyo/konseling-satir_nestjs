@@ -15,6 +15,9 @@ export class PelatihanCardEntity{
     body: string;
 
     @Column()
+    slug: string;
+
+    @Column()
     created_at: string;
 
     @Column()

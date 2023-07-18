@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
-export class LayananKonselingCardEntity {
+@Entity({name: 'layanan_konseling_cards'})
+export class LayananCardEntity {
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column()
     price: string;
