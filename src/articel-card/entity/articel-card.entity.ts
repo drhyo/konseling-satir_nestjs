@@ -6,7 +6,16 @@ export class ArticelCardEntity {
     id: number;
 
     @Column()
-    desc: string;
+    title: string;
+
+    @Column()
+    body: string;
+
+    @Column()
+    eye: number;
+
+    @Column()
+    slug: string;
 
     @Column()
     created_at: Date;

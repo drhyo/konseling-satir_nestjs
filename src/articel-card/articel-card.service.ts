@@ -43,7 +43,9 @@ export class ArticelCardService {
                 image_articel: image ? `http://localhost:1337${ image.url }`: '' 
             }
         })
-        return merge
+        let artikelReverse = merge.reduce((acc, curr) => [curr, ...acc], []);
+        return artikelReverse;
+
     }
     
 }

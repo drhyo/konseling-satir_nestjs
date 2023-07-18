@@ -41,7 +41,7 @@ export class FounderCardService {
                 const image = getImage.find((img: any ) => img.id == item.id)
                 return{
                     ...item,
-                    image_founder: image ? `http://localhost:1337${ image.url }`: '' 
+                    image: image ? `http://localhost:1337${ image.url }`: '' 
                 }
             })
             return merge

@@ -8,4 +8,7 @@ export class FounderCardEntity {
     @Column()
     title: string;
 
+    @Column()
+    name: string;
+
 }
