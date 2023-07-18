@@ -12,7 +12,6 @@ import { FounderCardModule } from './founder-card/founder-card.module';
 import { PersonalCardModule } from './personal-card/personal-card.module';
 import { PelatihanCardModule } from './pelatihan-card/pelatihan-card.module';
 import { KonsultasiCardModule } from './konsultasi-card/konsultasi-card.module';
-// import { LayananKonselingCardModule } from './layanan-konseling-card/layanan-konseling-card.module';
 import { BannerPageModule } from './banner-page/banner-page.module';
 import { GalleryHomeModule } from './gallery-home/gallery-home.module';
 import { GalleryTentangModule } from './gallery-tentang/gallery-tentang.module';
@@ -39,7 +38,6 @@ import { LayananCardModule } from './layanan-card/layanan-card.module';
       PersonalCardModule, 
       PelatihanCardModule,
       KonsultasiCardModule,
-      // LayananKonselingCardModule,
       BannerPageModule,
       GalleryHomeModule,
       GalleryTentangModule,
