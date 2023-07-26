@@ -17,7 +17,7 @@ export class LayananCardService {
 
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://localhost:1337/api/product-cards?populate=*')
+            const res = await axios.get('http://localhost:1337/api/layanan-konseling-cards?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{
