@@ -17,6 +17,14 @@ import { GalleryHomeModule } from './gallery-home/gallery-home.module';
 import { GalleryTentangModule } from './gallery-tentang/gallery-tentang.module';
 import { QuestionModule } from './question/question.module';
 import { LayananCardModule } from './layanan-card/layanan-card.module';
+import { GalleryCompanyModule } from './gallery-company/gallery-company.module';
+import { YoutubeModule } from './youtube/youtube.module';
+import { HomePageModule } from './home-page/home-page.module';
+import { AboutPageModule } from './about-page/about-page.module';
+import { PelatihanPageModule } from './pelatihan-page/pelatihan-page.module';
+import { KonsultasiPageModule } from './konsultasi-page/konsultasi-page.module';
+import { LayananPageModule } from './layanan-page/layanan-page.module';
+import { HyperlinkModule } from './hyperlink/hyperlink.module';
 
 
 
@@ -43,6 +51,14 @@ import { LayananCardModule } from './layanan-card/layanan-card.module';
       GalleryTentangModule,
       QuestionModule,
       LayananCardModule,
+      GalleryCompanyModule,
+      YoutubeModule,
+      HomePageModule,
+      AboutPageModule,
+      PelatihanPageModule,
+      KonsultasiPageModule,
+      LayananPageModule,
+      HyperlinkModule,
       ],
   controllers: [AppController],
   providers: [AppService],

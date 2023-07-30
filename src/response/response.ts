@@ -14,7 +14,6 @@ export class BaseResponseApi<T> {
     }
    
 
-
     responseSucces(): Response<BaseResponseApi<T>> {
         return this.response.status(200).json({
             success: this.success,
