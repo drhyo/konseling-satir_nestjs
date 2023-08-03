@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PersonalCardEntity } from './entity/personal-card.entity';
 import { Repository } from 'typeorm';
 import axios from 'axios';
+import 'dotenv/config'
 
 @Injectable()
 export class PersonalCardService {
@@ -17,7 +18,7 @@ export class PersonalCardService {
 
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://localhost:1337/api/personal-cards?populate=*')
+            const res = await axios.get( process.env.STRAPI_URL + 'personal-cards?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{

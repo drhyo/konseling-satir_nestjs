@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ArticelCardEntity } from './entity/articel-card.entity';
 import { Repository } from 'typeorm';
 import axios from 'axios';
-
+import 'dotenv/config'
 @Injectable()
 export class ArticelCardService {
     constructor(
@@ -17,7 +17,7 @@ export class ArticelCardService {
 
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://localhost:1337/api/articel-cards?populate=*')
+            const res = await axios.get(process.env.STRAPI_URL + 'articel-cards?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{
@@ -51,7 +51,7 @@ export class ArticelCardService {
 //by populate
     async getImageByPopulate (): Promise<any> {
         try {
-            const res = await axios.get('http://localhost:1337/api/articel-cards?populate=*&sort[0]=eye:desc')
+            const res = await axios.get( process.env.STRAPI_URL + 'articel-cards?populate=*&sort[0]=eye:desc')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{

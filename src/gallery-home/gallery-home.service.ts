@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { GalleryHomeEntity } from './entity/gallery-home.entity';
 import { Repository } from 'typeorm';
 import axios from 'axios';
-
+import 'dotenv/config'
 @Injectable()
 export class GalleryHomeService {
     constructor(
@@ -18,7 +18,7 @@ export class GalleryHomeService {
 
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://localhost:1337/api/gallery-banner-homepages?populate=*')
+            const res = await axios.get( process.env.STRAPI_URL + 'gallery-banner-homepages?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{

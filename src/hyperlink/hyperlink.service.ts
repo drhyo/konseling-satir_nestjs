@@ -3,6 +3,7 @@ import { HyperlinkEntity } from './entity/hyperlink.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import axios from 'axios';
+import 'dotenv/config'
 
 @Injectable()
 export class HyperlinkService {
@@ -17,7 +18,7 @@ export class HyperlinkService {
 
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://127.0.0.1:1337/api/hyperlinks?populate=*')
+            const res = await axios.get( process.env.STRAPI_URL + 'hyperlinks?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CompanyEntity } from './entity/gallery-company.entity';
 import { Repository } from 'typeorm';
 import axios from 'axios';
+import 'dotenv/config'
 
 @Injectable()
 export class GalleryCompanyService {
@@ -18,7 +19,7 @@ export class GalleryCompanyService {
 
     async getImage (): Promise<any> {
         try {
-            const res = await axios.get('http://127.0.0.1:1337/api/gallery-companies?populate=*')
+            const res = await axios.get(process.env.STRAPI_URL + 'gallery-companies?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
                 return{

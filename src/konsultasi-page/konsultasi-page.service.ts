@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { KonsultasiPageEntity } from './entity/konsultasi-page.entity';
 import axios from 'axios';
-
+import 'dotenv/config'
 @Injectable()
 export class KonsultasiPageService {
     constructor(
@@ -17,7 +17,7 @@ export class KonsultasiPageService {
     
         async getImage (): Promise<any> {
             try {
-                const res = await axios.get('http://127.0.0.1:1337/api/konsultasi?populate=*')
+                const res = await axios.get(process.env.STRAPI_URL + 'konsultasi?populate=*')
                 const findImage = res.data.data.attributes.image.data.attributes.url;
                 const imageUrl = `http://localhoast:1337${ findImage }`
                 return{
