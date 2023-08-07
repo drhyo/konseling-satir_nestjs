@@ -1,23 +1,25 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PelatihanPageEntity } from './entity/pelatihan-page.entity';
+import { WebinarPageEntity } from './entity/webinar-page.entity';
 import axios from 'axios';
 import 'dotenv/config'
+
+
 @Injectable()
-export class PelatihanPageService {
+export class WebinarPageService {
     constructor(
-        @InjectRepository(PelatihanPageEntity)
-        private pelatihanPageRepository: Repository<PelatihanPageEntity>
+        @InjectRepository(WebinarPageEntity)
+        private webinarPageRepository: Repository<WebinarPageEntity>
     ) { }
 
     async findData(id: number) {
-        return await this.pelatihanPageRepository.findOne({ where: { id } })
+        return await this.webinarPageRepository.findOne({ where: { id } })
     }
 
     async getImage(): Promise<any> {
         try {
-            const res = await axios.get(process.env.STRAPI_URL + 'pelatihan?populate=*')
+            const res = await axios.get(process.env.STRAPI_URL + 'webinar?populate=*')
             const findImage = res.data.data.attributes.image.data.attributes.url;
             const imageUrl = `http://localhost:1337${findImage}`
             return {
@@ -29,7 +31,7 @@ export class PelatihanPageService {
         }
     }
 
-    async findDataWithImage(id: number): Promise<PelatihanPageEntity> {
+    async findDataWithImage(id: number): Promise<WebinarPageEntity> {
         const findData = await this.findData(id)
         const getImage = await this.getImage()
 

@@ -10,23 +10,23 @@ export class ProductsService {
     constructor(
         @InjectRepository(ProductsEntity)
         private productsRepository: Repository<ProductsEntity>
-    ){}
+    ) { }
 
     findAllData(category: string): Promise<ProductsEntity[]> {
         return this.productsRepository.find({
             where: {
                 category: category
             }
-            
+
         })
     }
 
-    async getImage (): Promise<any> {
+    async getImage(): Promise<any> {
         try {
-            const res = await axios.get( process.env.STRAPI_URL + 'products?populate=*')
+            const res = await axios.get(process.env.STRAPI_URL + 'products?populate=*')
             const findImage = res.data.data.map((image: any) => {
                 const imageUrl = image.attributes.image.data.attributes.url
-                return{
+                return {
                     id: image.id,
                     url: imageUrl
                 }
@@ -38,19 +38,18 @@ export class ProductsService {
         }
     }
 
-    async findAllArticelCardWithImage (category: string): Promise<ProductsEntity[]> {
+    async findAllArticelCardWithImage(category: string): Promise<ProductsEntity[]> {
         const findAllData = await this.findAllData(category)
         const getImage = await this.getImage()
 
         const merge = findAllData.map((item) => {
-            const image = getImage.find((img: any ) => img.id == item.id)
-            return{
+            const image = getImage.find((img: any) => img.id == item.id)
+            return {
                 ...item,
-                image_articel: image ? `http://localhost:1337${ image.url }`: '' 
+                image: image ? `http://localhost:1337${image.url}` : ''
             }
         })
-        let artikelReverse = merge.reduce((acc, curr) => [curr, ...acc], []);
-        return artikelReverse;
+        return merge;
 
     }
 
