@@ -16,6 +16,7 @@ import { QuestionModule } from './question/question.module';
 import { GalleryCompanyModule } from './gallery-company/gallery-company.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { HomePageModule } from './home-page/home-page.module';
+import { WebinarPageModule } from './webinar-page/webinar-page.module';
 import { AboutPageModule } from './about-page/about-page.module';
 import { PelatihanPageModule } from './pelatihan-page/pelatihan-page.module';
 import { KonsultasiPageModule } from './konsultasi-page/konsultasi-page.module';
@@ -31,35 +32,36 @@ import 'dotenv/config'
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
     host: process.env.DB_HOST,
-    port: parseInt( process.env.DB_PORT),
+    port: parseInt(process.env.DB_PORT),
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     autoLoadEntities: true,
     synchronize: false,
-  }), UserModule, 
-      ArticelCardModule, 
-      SliderSectionInfoModule, 
-      FounderCardModule, 
-      PersonalCardModule, 
-      BannerPageModule,
-      GalleryHomeModule,
-      GalleryTentangModule,
-      QuestionModule,
-      GalleryCompanyModule,
-      YoutubeModule,
-      HomePageModule,
-      AboutPageModule,
-      PelatihanPageModule,
-      KonsultasiPageModule,
-      LayananPageModule,
-      HyperlinkModule,
-      ProductsModule,
-      FooterAdressModule,
-      FooterContactUsModule,
-      ],
+  }), UserModule,
+    ArticelCardModule,
+    SliderSectionInfoModule,
+    FounderCardModule,
+    PersonalCardModule,
+    BannerPageModule,
+    GalleryHomeModule,
+    GalleryTentangModule,
+    QuestionModule,
+    GalleryCompanyModule,
+    YoutubeModule,
+    HomePageModule,
+    AboutPageModule,
+    PelatihanPageModule,
+    KonsultasiPageModule,
+    LayananPageModule,
+    HyperlinkModule,
+    ProductsModule,
+    FooterAdressModule,
+    FooterContactUsModule,
+    WebinarPageModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
 
-export class AppModule {}
+export class AppModule { }

@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { UserEntity } from './entity/user.entity';
-import { ProtectMiddleware } from 'src/protect.middelware';
+import { ProtectMiddleware } from './protect.middelware';
 
 
 
@@ -13,11 +13,11 @@ import { ProtectMiddleware } from 'src/protect.middelware';
     TypeOrmModule.forFeature([UserEntity]),
     JwtModule.register({
       secret: "rahasia",
-      signOptions: {expiresIn: "24h"}
+      signOptions: { expiresIn: "24h" }
     })
   ],
   controllers: [UserController],
-  providers: [UserService]
+  providers: [UserService, ProtectMiddleware]
 })
 export class UserModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
