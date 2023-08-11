@@ -22,6 +22,8 @@ import { KonsultasiPageModule } from './konsultasi-page/konsultasi-page.module';
 import { LayananPageModule } from './layanan-page/layanan-page.module';
 import { HyperlinkModule } from './hyperlink/hyperlink.module';
 import { ProductsModule } from './products/products.module';
+import { FooterAdressModule } from './footer-adress/footer-adress.module';
+import { FooterContactUsModule } from './footer-contact-us/footer-contact-us.module';
 import 'dotenv/config'
 
 
@@ -53,6 +55,8 @@ import 'dotenv/config'
       LayananPageModule,
       HyperlinkModule,
       ProductsModule,
+      FooterAdressModule,
+      FooterContactUsModule,
       ],
   controllers: [AppController],
   providers: [AppService],
