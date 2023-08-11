@@ -8,8 +8,8 @@ import { BaseResponseApi } from '../response/response';
 @Controller('user')
 export class UserController {
   constructor(
-    private userService: UserService,
-    private jwtService: JwtService
+    private readonly UserService: UserService,
+    private readonly jwtService: JwtService
   ) { }
 
   @Post('register')
@@ -19,7 +19,7 @@ export class UserController {
   ) {
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const user = await this.userService.create({
+    const user = await this.UserService.create({
       email,
       password: hashedPassword
     });
@@ -27,14 +27,13 @@ export class UserController {
 
     return user;
   }
-
   @Post('login')
   async login(
     @Body('email') email: string,
     @Body('password') password: string,
     @Res({ passthrough: true }) response: Response
   ) {
-    const user = await this.userService.findOne({ email });
+    const user = await this.UserService.findOne({ email });
 
     if (!user) {
       throw new BadRequestException('Invalid credentials');
@@ -59,7 +58,19 @@ export class UserController {
   @Get('users')
   async user(@Req() request: Request) {
     try {
-      const user = await this.userService.findOne({ id: request.userId });
+      const cookie = request.cookies['jwt'];
+
+      if (!cookie) {
+        throw new UnauthorizedException();
+      }
+
+      const data = await this.jwtService.verifyAsync(cookie);
+
+      if (!data) {
+        throw new UnauthorizedException();
+      }
+
+      const user = await this.UserService.findOne({ id: data['id'] });
 
       if (!user) {
         throw new UnauthorizedException();
@@ -69,8 +80,6 @@ export class UserController {
 
       return result;
     } catch (e) {
-      console.log(e);
-
       throw new UnauthorizedException();
     }
   }

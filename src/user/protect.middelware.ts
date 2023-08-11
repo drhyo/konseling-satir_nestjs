@@ -16,11 +16,13 @@ export class ProtectMiddleware implements NestMiddleware {
 
     async use(req: Request, res: Response, next: NextFunction) {
         try {
-            const token = req.headers.authorization;
+            const token = req.cookies.jwt;
+
             if (!token) {
                 throw new UnauthorizedException('Missing JWT');
             }
-            const decodedToken = this.jwtService.verify(token.split(' ')[1]);
+
+            const decodedToken = await this.jwtService.verifyAsync(token);
 
             if (!decodedToken) {
                 throw new UnauthorizedException('Invalid JWT');
