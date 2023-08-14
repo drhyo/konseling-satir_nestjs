@@ -16,22 +16,25 @@ export class ProtectMiddleware implements NestMiddleware {
 
     async use(req: Request, res: Response, next: NextFunction) {
         try {
-            const token = req.cookies.jwt;
-
+            const token = req.headers.authorization;
             if (!token) {
                 throw new UnauthorizedException('Missing JWT');
             }
 
-            const decodedToken = await this.jwtService.verifyAsync(token);
+            try {
+                const decodedToken = this.jwtService.verify(token.split(' ')[1]);
 
-            if (!decodedToken) {
-                throw new UnauthorizedException('Invalid JWT');
+                if (!decodedToken) {
+                    throw new UnauthorizedException('Invalid JWT');
+                }
+
+                // You can attach the decoded user ID to the request for further processing
+                req.userId = decodedToken.id;
+
+                next();
+            } catch (error) {
+                throw new UnauthorizedException('Invalid JWT'); // Token tidak valid
             }
-
-            // You can attach the decoded user ID to the request for further processing
-            req.userId = decodedToken.id;
-
-            next();
         } catch (error) {
             throw new UnauthorizedException('Unauthorized');
         }

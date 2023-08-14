@@ -12,8 +12,7 @@ import { ProtectMiddleware } from './protect.middelware';
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
     JwtModule.register({
-      secret: "rahasia",
-      signOptions: { expiresIn: "24h" }
+      secret: "rahasia"
     })
   ],
   controllers: [UserController],
