@@ -24,7 +24,9 @@ import { HyperlinkModule } from './hyperlink/hyperlink.module';
 import { ProductsModule } from './products/products.module';
 import { FooterAdressModule } from './footer-adress/footer-adress.module';
 import { FooterContactUsModule } from './footer-contact-us/footer-contact-us.module';
+import { ContactInformationModule } from './contact-information/contact-information.module';
 import 'dotenv/config'
+import { WebinarPageModule } from './webinar-page/webinar-page.module';
 
 
 @Module({
@@ -57,6 +59,8 @@ import 'dotenv/config'
       ProductsModule,
       FooterAdressModule,
       FooterContactUsModule,
+      ContactInformationModule,
+      WebinarPageModule
       ],
   controllers: [AppController],
   providers: [AppService],
