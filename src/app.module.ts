@@ -16,7 +16,6 @@ import { QuestionModule } from './question/question.module';
 import { GalleryCompanyModule } from './gallery-company/gallery-company.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { HomePageModule } from './home-page/home-page.module';
-import { WebinarPageModule } from './webinar-page/webinar-page.module';
 import { AboutPageModule } from './about-page/about-page.module';
 import { PelatihanPageModule } from './pelatihan-page/pelatihan-page.module';
 import { KonsultasiPageModule } from './konsultasi-page/konsultasi-page.module';
@@ -25,7 +24,9 @@ import { HyperlinkModule } from './hyperlink/hyperlink.module';
 import { ProductsModule } from './products/products.module';
 import { FooterAdressModule } from './footer-adress/footer-adress.module';
 import { FooterContactUsModule } from './footer-contact-us/footer-contact-us.module';
+import { ContactInformationModule } from './contact-information/contact-information.module';
 import 'dotenv/config'
+import { WebinarPageModule } from './webinar-page/webinar-page.module';
 
 
 @Module({
@@ -58,6 +59,7 @@ import 'dotenv/config'
     ProductsModule,
     FooterAdressModule,
     FooterContactUsModule,
+    ContactInformationModule,
     WebinarPageModule
   ],
   controllers: [AppController],
